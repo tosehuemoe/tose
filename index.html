@@ -6,19 +6,33 @@
 	<meta charset="utf-8">
 	<base href="/">
 
-	<title>title</title>
+	<title>word + zoom</title>
 	<meta name="description" content="">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="path/to/image.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
 	<!-- Custom Browsers Color Start -->
 	<meta name="theme-color" content="#000">
 	<!-- Custom Browsers Color End -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="spectrum.css">
-	<link rel="stylesheet" href="main.min.css">
+	<link rel="stylesheet" href="libs/spectrum.css">
+	<link rel="stylesheet" href="css/main.min.css">
 	
+<script>
+	if(document.documentElement.clientWidth > 768) {
+    document.write('<script src=/libs/fabric.min.js>')
+  } else {
+  	document.write('<script src=/libs/fabric.min151.js>')
+  }
+</script>
+
 </head>
 
 <body>
@@ -27,30 +41,31 @@
 
 	<div class="container">
 
-		<div class="row">
+		<div class="row align-items-center">
 
 			<div class="col-12">
 				
 				<div class="row align-items-center">
 
-					<div class="col-8">
+					<div class="col-lg-8 col-md-12 col-sm-12">
 
-						<div id="canvas-wrapper">
+    
 
-							<canvas id="canvas" width="600" height="250"></canvas>
+		<div id="canvasSizer">
+	
+			<canvas width="600" height="300" id="canvas" ></canvas>
 
-						</div>
-
+		</div>
 					</div>
 
-					<div class="col-4">
+					<div class="col-lg-4 col-md-12 col-sm-12">
 						<p style="margin-top: 15px;">
 							<input class="input" data-text="Слово" value="" id="cardalltexthex1" placeholder="Введите слово..."></input>
 						</p>
 						<div class="row">
 							<div class="col-12" >
 								<label for="font-control">Тип</label>
-								<select id="font-control" name="font-control" class="selectpicker">
+								<select id="font-control" name="font-control" class="input666">
 									<option value="nautilus pompilius" style="font-family: Nautilus Pompilius;">Nautilus Pompilius</option>
 									<option value="tsarevich-regular" style="font-family: Tsarevich-Regular;">Tsarevich-Regular</option>
 									<option value="celestina-script" style="font-family: Celestina-Script;">Celestina-Script</option>
@@ -61,11 +76,13 @@
 								</select></br>
 
 								<label for="font-control-size">Размер</label>
-								<input type="number" value="70" min="50" max="250" step="1" id="font-control-size"></br>
+								<input type="number" value="70" min="50" max="250" step="1" id="font-control-size" class="input666"></br>
 
 								<label for="font-color">Цвет</label>
 								<input id="showPaletteOnly"></br>
-								<span>Размер слова: <br><span id="word_size"></span></span><br><span id="word_size2"></span>
+								<span>Размер слова: <br><span id="word_size"></span></span><br>
+								<span id="word_size2"></span><br>
+								<span id="word_size3"></span>
 							</div>
 						</div>
 
@@ -86,8 +103,9 @@
 										</button>
 									</div>
 									<div class="modal-body" style="text-align: center;">
-										<img id="canvasRasterizer" style="border: solid 1px #ccc;"></img>
+										<img id="canvasRasterizer" style="border: solid 1px #ccc; width: 100%;"></img>
 										<div id="SVGRasterizer" style="display: none;"></div>
+										<img id="SVGRasterizer2"></img>
 									</div>
 									<div class="modal-footer">
 										<button id="dl" type="button" class="btn btn-primary">Сохранить SVG</button>
@@ -108,13 +126,11 @@
 
 	</div>
 
-	<script src="jquery-3.2.1.slim.min.js"></script>
-	<script src="spectrum.js"></script>
-	<script src="fabric.min.js"></script>
-	<script src="d3.v3.min.js"></script>
-	<script src="d3-save-svg.min.js"></script>
-	<script src="scripts.min.js"></script>
-
+	<script src="libs/jquery-3.2.1.slim.min.js"></script>
+	<script src="libs/spectrum.js"></script>
+	<script src="libs/d3.v3.min.js"></script>
+	<script src="libs/d3-save-svg.min.js"></script>
+	<script src="js/scripts.min.js"></script>
 
 </body>
 </html>
