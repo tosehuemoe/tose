@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>word + zoom</title>
+	<meta name="description" content="">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="path/to/image.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#000">
+	<!-- Custom Browsers Color End -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="libs/spectrum.css">
+	<link rel="stylesheet" href="css/main.min.css">
+	
+
+
+</head>
+
+<body>
+
+	<!-- Custom HTML -->
+
+	<div class="container">
+
+		<div class="row align-items-center">
+
+			<div class="col-12">
+				
+				<div class="row align-items-center">
+
+					<div class="col-lg-8 col-md-12 col-sm-12">    
+
+						<div id="canvasSizer">
+
+							<canvas width="600" height="600" id="canvas" ></canvas>
+
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-12 col-sm-12">
+
+						<div class="row align-items-center">
+							
+							<div class="col-lg-12 col-md-4 col-sm-12">
+								<div class="text-modif" style="display: none; border: 1px solid #ccc;">
+
+									<label for="font-color">Цвет текста</label>
+									<input id="showPaletteOnly"></br>
+									<p>Угол
+										<button id="angleft2" >'<'</button>
+										<span id="curangle2"></span>
+										<button id="angright2" >'>'</button>
+									</p>
+									<p>Толщина линии
+										<input type="number" min="0" id="strokeWidth2" >
+									</p>
+									<p>
+									Шрифт
+									<div class="fontchoose">
+										<button value="lobster" style="font-family: Lobster;">Лобстер(Lobster)</button>
+										<button value="Arial" style="font-family: arial;">Ариал(Arial)</button>
+										<button value="Nautilus Pompilius" style="font-family: Nautilus Pompilius;">Nautilus Pompilius</button>
+									</div>
+									</p>
+								</div>
+							</div>
+							
+							<div class="col-lg-12 col-md-4 col-sm-12">
+								<div class="obj-modif" style="display: none; border: 1px solid #ccc;">
+
+									<label for="obj-color">Цвет элемента</label>
+									<input id="showPaletteOnly2"></br>
+									<p>Угол
+										<button id="angleft" >'<'</button>
+										<span id="curangle"></span>
+										<button id="angright" >'>'</button>
+									</p>
+									<p>Толщина линии
+										<input type="number" min="0" id="strokeWidth" >
+									</p>
+
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-4 col-sm-12">
+								<span>Размер слова:</span><br>
+								<span id="word_size3"></span><br>
+								<span id="word_size4"></span>
+								<ul id="containerLayers"></ul>
+								<p>
+									<button type="button" onclick="addtext()" class="btn btn-info">
+										Добавить Текст
+									</button>
+									<button type="button" onclick="addImage1()" class="btn btn-info">
+										Добавить картинку
+									</button>
+									<!-- Button trigger modal -->
+									<button type="button" class="btn btn-warning" data-toggle="modal" data-target=".bd-example-modal-lg">
+										Добавить элемент
+									</button>
+									<!-- Modal -->
+									<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-lg">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">Добавить элемент</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body" style="text-align: center;">
+													<div class="btn-group buttons">
+														<button class="btn btn-light" value="9999">Мишка</button>
+														<button class="btn btn-light" value="ramka">Рамка</button>
+														<button class="btn btn-primary" value="999">Ноги</button>
+														<button class="btn btn-info" value="666">Коляска</button>
+													</div>
+
+												</div>
+												<div class="modal-footer">
+
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</p>
+								<p>
+									<button class="btn btn-danger" id="btn">
+										Удалить выбранный объект
+									</button>
+								</p>
+							</div>
+
+							
+						</div>
+						
+						<div class="row">
+							<div class="col-md-12 col-sm-12">
+								<!-- Button trigger modal -->
+								<button type="button" class="btn btn-success" id="rasterize" onclick="pngandsvg()" data-toggle="modal" data-target=".bd-example-modal-lg2">
+									Предпросмотр
+								</button>
+
+								<!-- Modal -->
+
+								<div class="modal fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Предпросмотр</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body" style="text-align: center;">
+												<img id="canvasRasterizer" style="border: solid 1px #ccc; width: 100%;"></img>
+												<div id="SVGRasterizer" style="display: none;"></div>
+
+											</div>
+											<div class="modal-footer">
+
+												<a id="myLink_33" href="#" class="btn btn-primary" download="my-file-name">Скачать SVG</a>
+
+												<a id="myLink_666" href="#" class="btn btn-primary" download="my-file-name">Скачать PNG</a>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+
+<script src="libs/jquery-3.2.1.slim.min.js"></script>
+<script src="libs/spectrum.js"></script>
+
+<script>
+	if(document.documentElement.clientWidth > 768) {
+		document.write('<script src=libs/fabric.min.js>')
+	} else {
+		document.write('<script src=libs/fabric.min151.js>')
+	}
+</script>
+
+<script src="libs/d3.v3.min.js"></script>
+
+<script src="js/scripts.min.js"></script>
+
+</body>
+</html>
